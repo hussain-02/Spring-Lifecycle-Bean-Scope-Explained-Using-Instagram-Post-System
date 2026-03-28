@@ -7,7 +7,7 @@
     <!-- bean definitions here -->
     <bean id="post" class="com.example.SocialMedia.SimplePost" scope="prototype"></bean>
     <bean id="postList" class="com.example.SocialMedia.SimplePostList" scope="singleton"></bean>
-    <bean id="user" class="com.example.SocialMedia.SimpleUser">
+    <bean id="user" class="com.example.SocialMedia.SimpleUser" init-method="init" destroy-method="destory">
         <property name="postList" ref="postList"></property>
     </bean>
 

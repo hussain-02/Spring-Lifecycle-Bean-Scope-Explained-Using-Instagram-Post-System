@@ -9,7 +9,7 @@ public class SocialMediaApplication {
 
 	public static void main(String[] args) {
 		//SpringApplication.run(SocialMediaApplication.class, args);
-		ClassPathXmlApplicationContext  applicationContextontext = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+		ClassPathXmlApplicationContext  applicationContext = new ClassPathXmlApplicationContext("ApplicationContext.xml");
 
 		Scanner sc = new Scanner(System.in);
 
@@ -18,17 +18,17 @@ public class SocialMediaApplication {
 		String userName = sc.nextLine();
 
 
-		User user = (User)applicationContextontext.getBean("user");
+		User user = (User)applicationContext.getBean("user");
 
 		user.SetUserName(userName);
 
-		PostList postList = (PostList)applicationContextontext.getBean("postList");
+		PostList postList = (PostList)applicationContext.getBean("postList");
 		while(true) {
-			System.out.println("choose from below \n 1.Create a post \n 2.Sell all post");
+			System.out.println("choose from below \n 1.Create a post \n 2.Sell all post\n 3.Exit");
 			int userSelect = sc.nextInt();
 			switch (userSelect) {
 				case 1: {
-					Post post = (Post) applicationContextontext.getBean("post");
+					Post post = (Post) applicationContext.getBean("post");
 					sc.nextLine();
 					String message = sc.nextLine();
 					post.setMessage(message);
@@ -39,6 +39,9 @@ public class SocialMediaApplication {
 				case 2: {
 					postList.getAllPost().forEach(items -> System.out.println(items.getMessage()));
 					break;
+				}
+				case 3: {
+					applicationContext.close();
 				}
 			}
 		}
